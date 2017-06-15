@@ -13,6 +13,11 @@ Start in background
 docker-compose up -d
 ```
 
+When you're done...
+```
+docker-compose down
+```
+
 # Accessing
 
 Kibana should be accessible on port `5601` of your Docker host.
