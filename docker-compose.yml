@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  elasticsearch:
+    image: elasticsearch:2.4
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - es
+    volumes_from:
+      - esdata
+
+  kibana:
+    image: kibana:4.6
+    ports:
+      - 5601:5601
+    networks:
+      - es
+    depends_on:
+      - elasticsearch
+
+  esdata:
+    image: busybox
+    volumes:
+      - /var/lib/elasticsearch
+
+networks:
+  es:
+    driver: bridge
